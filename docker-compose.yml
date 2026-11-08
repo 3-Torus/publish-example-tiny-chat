@@ -1,0 +1,15 @@
+# A classic compose file for a 3-Torus publishing example. Nothing in it is a
+# secret. llama-server reads every LLAMA_ARG_* variable as the matching
+# command-line option, so no command is needed.
+services:
+  chat:
+    image: ghcr.io/ggml-org/llama.cpp:server-b11783@sha256:c7b03e45cff9c4e984acd39032a6f3a82c811075b72bf176e329f84b8598c135
+    ports:
+      - "8080:8080"
+    environment:
+      LLAMA_ARG_HF_REPO: bartowski/SmolLM2-135M-Instruct-GGUF
+      LLAMA_ARG_HF_FILE: SmolLM2-135M-Instruct-Q8_0.gguf
+      LLAMA_ARG_HOST: 0.0.0.0
+      LLAMA_ARG_PORT: "8080"
+      LLAMA_ARG_CTX_SIZE: "4096"
+      LLAMA_ARG_N_PARALLEL: "2"
